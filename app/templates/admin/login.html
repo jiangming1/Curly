@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>微电影管理系统</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="shortcut icon" href="{{ url_for('static',filename='images/logo.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='lib/bootstrap-3.3.7/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='lib/font-awesome-4.7.0/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='lib/ionicons-2.0.1/css/ionicons.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='lib/adminlte/AdminLTE.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='lib/icheck-1.0.1/square/blue.css') }}">
+</head>
+<body class="hold-transition login-page">
+<div class="login-box">
+    <div class="login-logo">
+        <a href=""><b>微电影管理系统</b></a>
+    </div>
+    <div class="login-box-body">
+        {% for message in get_flashed_messages() %}
+            <p class="login-box-msg" style="color: red">{{ message }}</p>
+        {% endfor %}
+        <form method="post" id="form-data">
+            <div class="form-group has-feedback">
+                {{ form.account }}
+                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                {% for error in form.account.errors %}
+                    <div class="col-md-12">
+                        <p style="color: red">
+                            {{ error }}
+                        </p>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="form-group has-feedback">
+                {{ form.pwd }}
+                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                {% for error in form.pwd.errors %}
+                    <div class="col-md-12">
+                        <p style="color: red">
+                            {{ error }}
+                        </p>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="row">
+                <div class="col-xs-8">
+                </div>
+                <div class="col-xs-4">
+                    {{ form.submit }}
+                    {{ form.csrf_token }}
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script src="{{ url_for('static',filename='lib/jquery-3.2.1.min.js') }}"></script>
+<script src="{{ url_for('static',filename='lib/bootstrap-3.3.7/js/bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static',filename='lib/icheck-1.0.1/icheck.min.js') }}"></script>
+</body>
+</html>

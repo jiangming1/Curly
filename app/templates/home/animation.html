@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>热映电影</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='lib/swiper/swiper-3.4.2.min.css') }}">
+</head>
+<body>
+
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        {% for v in data %}
+            <div class="swiper-slide">
+                <img src="{{ url_for('static',filename='uploads/'+v.logo) }}" alt="{{ v.title }}">
+            </div>
+        {% endfor %}
+    </div>
+
+    <!-- 如果需要分页器 -->
+    <div class="swiper-pagination"></div>
+
+    <!-- 如果需要导航按钮 -->
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+
+    <!-- 如果需要滚动条 -->
+    <div class="swiper-scrollbar"></div>
+</div>
+
+</body>
+<script src="{{ url_for('static',filename='lib/jquery-3.2.1.min.js') }}"></script>
+<script src="{{ url_for('static',filename='lib/swiper/swiper-3.4.2.min.js') }}"></script>
+<script>
+    $(document).ready(function () {
+        var swiper = new Swiper('.swiper-container', {
+            pagination: '.swiper-pagination',
+            paginationClickable: true,
+            // 如果需要前进后退按钮
+            nextButton: '.swiper-button-next',
+            prevButton: '.swiper-button-prev',
+            // 滚动条
+            scrollbar: '.swiper-scrollbar'
+        });
+    })
+</script>
+</html>

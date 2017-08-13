@@ -1,0 +1,59 @@
+{% extends "admin/base.html" %}
+{% import "ui/admin_page.html" as pg %}
+
+{% block content %}
+    <section class="content-header">
+        <h1>微电影管理系统</h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> 评论管理</a></li>
+            <li class="active">评论列表</li>
+        </ol>
+    </section>
+    <section class="content" id="showcontent">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">评论列表</h3>
+                    </div>
+                    <div class="box-body box-comments">
+                        {# 正确/错误消息提醒 #}
+                        {% include 'ui/msg.html' %}
+                        {% for v in page_data.items %}
+                            <div class="box-comment">
+                                {% if v.user.face %}
+                                    <img class="img-circle img-sm" src="{{ url_for('static',filename='uploads/users/'+v.user.face) }}">
+                                {% else %}
+                                    <img alt="50x50" data-src="holder.js/50x50" class="img-circle" style="border:1px solid #abcdef;width:50px;">
+                                {% endif %}
+                                <div class="comment-text">
+                                    <span class="username">
+                                        {{ v.user.name }}
+                                        <span class="text-muted pull-right">
+                                            <i class="fa fa-calendar"></i>
+                                            {{ v.addtime }}
+                                        </span>
+                                    </span>
+                                    关于电影<a>《{{ v.movie.title }}》</a>的评论：{{ v.content }}
+                                    <br><a href="{{ url_for('admin.comment_del',id=v.id) }}" class="label label-danger pull-right">删除</a>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="box-footer clearfix">
+                        {{ pg.page(page_data,'admin.comment_list') }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block js %}
+    <script>
+        $(document).ready(function () {
+            $("#g-6").addClass("active");
+            $("#g-6-1").addClass("active");
+        });
+    </script>
+{% endblock %}
