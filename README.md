@@ -2,8 +2,7 @@
 
 Python Flask Micro movie website.
 
-
-## 项目目录结构
+## Directory Structure
 
 ```bash
 $ tree ./
@@ -26,8 +25,36 @@ $ tree ./
 ├── app.py
 ├── LICENSE
 ├── manager.py              # 入口启动脚本
-├── README.md
-└── requirements.txt
+├── README.md               # 帮助文档
+└── requirements.txt        # Python所需要的安装包
 
 7 directories, 13 files
+```
+
+## Run MySQL
+
+- Download the MySQL image
+
+```bash
+$ sudo docker pull mysql
+```
+
+- Start the MySQL container
+
+```bash
+$ sudo docker run -d --name mysql -e MYSQL_ROOT_PASSWORD=123456 -e MYSQL_DATABASE=curly -p 3306:3306 mysql
+```
+
+## Run Redis
+
+- Download the Redis image
+
+```bash
+$ sudo docker pull redis
+```
+
+- Start the Redis container
+
+```bash
+$ sudo docker run --name redis -d -p 6379:6379 redis
 ```
